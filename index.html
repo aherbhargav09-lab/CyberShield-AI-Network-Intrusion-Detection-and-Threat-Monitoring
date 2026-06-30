@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="refresh" content="5">
+
+    <title>CyberShield AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡 CyberShield AI</h1>
+
+    <h2>Network Intrusion Detection & Threat Monitoring Dashboard</h2>
+
+    <div class="cards">
+
+        <!-- Packets -->
+        <div class="card">
+            <h3>📦 Packets Captured</h3>
+            <p>{{ packet_count }}</p>
+        </div>
+
+        <!-- Alerts -->
+        <div class="card">
+            <h3>🚨 Total Alerts</h3>
+            <p>{{ total_alerts }}</p>
+        </div>
+
+        <!-- SYN -->
+        <div class="card">
+            <h3>⚠️ SYN Flood</h3>
+            <p>{{ syn_count }}</p>
+        </div>
+
+        <!-- Port Scan -->
+        <div class="card">
+            <h3>🔎 Port Scan</h3>
+            <p>{{ port_scan_count }}</p>
+        </div>
+
+        <!-- Risk -->
+        <div class="card">
+            <h3>🛡 Risk Level</h3>
+            <p>{{ risk_level }}</p>
+        </div>
+
+    </div>
+
+    <br>
+
+    <h2>📊 Attack Statistics</h2>
+
+    <canvas id="attackChart"></canvas>
+
+    <br><br>
+
+    <h2>📋 Recent Alerts</h2>
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Attack Type</th>
+
+            <th>Source IP</th>
+
+            <th>Timestamp</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for alert in alerts %}
+
+        <tr>
+
+            <td>{{ alert[0] }}</td>
+
+            <td>{{ alert[1] }}</td>
+
+            <td>{{ alert[2] }}</td>
+
+            <td>{{ alert[3] }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <br><br>
+
+    <div class="footer">
+
+        <h3>CyberShield AI v1.0</h3>
+
+        <p>Python • Flask • Scapy • SQLite • Chart.js</p>
+
+        <p>Cybersecurity & Privacy | Hackverse X 2026</p>
+
+    </div>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById("attackChart");
+
+new Chart(ctx, {
+
+    type: "bar",
+
+    data: {
+
+        labels: [
+
+            "SYN Flood",
+
+            "Port Scan"
+
+        ],
+
+        datasets: [{
+
+            label: "Detected Attacks",
+
+            data: [
+
+                {{ syn_count }},
+
+                {{ port_scan_count }}
+
+            ],
+
+            backgroundColor: [
+
+                "#00d4ff",
+
+                "#ff4d4d"
+
+            ],
+
+            borderWidth: 1
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+
+                display: true
+
+            }
+
+        },
+
+        scales: {
+
+            y: {
+
+                beginAtZero: true,
+
+                ticks: {
+
+                    stepSize: 1
+
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>

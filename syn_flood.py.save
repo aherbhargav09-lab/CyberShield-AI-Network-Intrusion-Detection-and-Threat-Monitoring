@@ -1,0 +1,33 @@
+from scapy.layers.inet import IP, TCP
+from database.db import insert_alert
+
+syn_count = {}
+
+THRESHOLD = 20
+
+
+def detect_syn_flood(packet):
+
+    if packet.haslayer(IP) and packet.haslayer(TCP):
+
+        if packet[TCP].flags == "S":
+
+            src_ip = packet[IP].src
+
+            if src_ip not in syn_count:
+                syn_count[src_ip] = 0
+
+            syn_count[src_ip] += 1
+
+            print(f"[SYN] {src_ip} -> Count: {syn_count[src_ip]}")
+
+            if syn_count[src_ip] == THRESHOLD:
+
+                print(
+                    f"[ALERT] Possible SYN Flood Attack Detected from {src_ip}"
+                )
+
+                insert_alert(
+                    "SYN Flood",
+                    src_ip
+                )
