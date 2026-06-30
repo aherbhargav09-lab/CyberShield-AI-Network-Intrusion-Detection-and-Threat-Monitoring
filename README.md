@@ -123,7 +123,7 @@ CyberShield-AI/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/aherbhargav09-lab/CyberShield-AI.git
+git clone https://github.com/aherbhargav09-lab/CyberShield-AI-Network-Intrusion-Detection-and-Threat-Monitoring.git
 ```
 
 ---
@@ -264,6 +264,8 @@ Include screenshots of:
 
 # 👨‍💻 Developer
 
+# 👨‍💻 Developer
+
 **Bhargav Aher**
 
 Cyber Security Student
@@ -271,7 +273,8 @@ Cyber Security Student
 GitHub:
 https://github.com/aherbhargav09-lab
 
----
+Repository:
+https://github.com/aherbhargav09-lab/CyberShield-AI-Network-Intrusion-Detection-and-Threat-Monitoring
 
 # 📄 License
 
