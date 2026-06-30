@@ -123,7 +123,7 @@ CyberShield-AI/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/CyberShield-AI.git
+git clone https://github.com/aherbhargav09-lab/CyberShield-AI.git
 ```
 
 ---
